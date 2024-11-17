@@ -95,9 +95,72 @@ Customer(customer_id),
  CONSTRAINT fk_Rating_Restaurant FOREIGN KEY (restaurant_id) REFERENCES
 Restaurant(restaurant_id)
 );
--- Example INSERT Statements for Admin, Customer, and Restaurant
-INSERT INTO Admin VALUES (1, 'Admin Name', 'adminpass123');
-INSERT INTO Customer VALUES (1, 'John', 'Doe', 'password123', '9876543210', '123 Street,
-City', 'john.doe@example.com', 1);
-INSERT INTO Restaurant VALUES (1, 101, 'Restaurant 1', '456 Avenue, City', 'restpass123',
-'1234567890');
+-- Insert values into Customer table
+INSERT INTO Customer (customer_id, customer_firstname, customer_lastname, customer_password, customer_phoneno, customer_address, customer_email, Admin_id) 
+VALUES (101, 'John', 'Doe', 'custpass1234567', '9876543210', '123 Elm Street, City A', 'john.doe@mail.com', 1);
+INSERT INTO Customer (customer_id, customer_firstname, customer_lastname, customer_password, customer_phoneno, customer_address, customer_email, Admin_id) 
+VALUES (102, 'Jane', 'Smith', 'custpass2345678', '8765432190', '456 Oak Avenue, City B', 'jane.smith@mail.com', 2);
+
+-- Insert values into Restaurant table
+INSERT INTO Restaurant (Admin_id, restaurant_id, restaurant_name, restaurant_address, restaurant_password, restaurant_phoneno) 
+VALUES (1, 201, 'DineSpot', '789 Cedar Road, City A', 'restpass1234567', '9988776655');
+INSERT INTO Restaurant (Admin_id, restaurant_id, restaurant_name, restaurant_address, restaurant_password, restaurant_phoneno) 
+VALUES (2, 202, 'FoodHub', '321 Maple Street, City B', 'restpass7654321', '8877665544');
+
+-- Insert values into Category table
+INSERT INTO Category (category_id, category_name, restaurant_id) 
+VALUES (301, 'Starters', 201);
+INSERT INTO Category (category_id, category_name, restaurant_id) 
+VALUES (302, 'Entrees', 201);
+INSERT INTO Category (category_id, category_name, restaurant_id) 
+VALUES (303, 'Desserts', 202);
+
+-- Insert values into Menu_items table
+INSERT INTO Menu_items (item_code, item_name, Price, category_id) 
+VALUES (401, 'Spring Rolls', 4.99, 301);
+INSERT INTO Menu_items (item_code, item_name, Price, category_id) 
+VALUES (402, 'Grilled Chicken', 12.49, 302);
+INSERT INTO Menu_items (item_code, item_name, Price, category_id) 
+VALUES (403, 'Cheesecake', 5.99, 303);
+
+-- Insert values into Payment_details table
+INSERT INTO Payment_details (payment_id, payment_mode, payment_timestamp) 
+VALUES (501, 'Credit Card', SYSTIMESTAMP);
+INSERT INTO Payment_details (payment_id, payment_mode, payment_timestamp) 
+VALUES (502, 'Cash', SYSTIMESTAMP);
+
+-- Insert values into Delivery_details table
+INSERT INTO Delivery_details (delivery_id, delivery_address, delivery_status) 
+VALUES (601, '123 Elm Street, City A', 'Delivered');
+INSERT INTO Delivery_details (delivery_id, delivery_address, delivery_status) 
+VALUES (602, '456 Oak Avenue, City B', 'Out for Delivery');
+
+-- Insert values into Order_details table
+INSERT INTO Order_details (Order_id, Order_time, Order_amount, Order_status, customer_id, delivery_id, payment_id, restaurant_id) 
+VALUES (701, SYSTIMESTAMP, 20.98, 'Completed', 101, 601, 501, 201);
+INSERT INTO Order_details (Order_id, Order_time, Order_amount, Order_status, customer_id, delivery_id, payment_id, restaurant_id) 
+VALUES (702, SYSTIMESTAMP, 15.99, 'In Progress', 102, 602, 502, 202);
+
+-- Insert values into Orders table
+INSERT INTO Orders (quantity, Order_id, item_code) 
+VALUES (2, 701, 401);
+INSERT INTO Orders (quantity, Order_id, item_code) 
+VALUES (1, 702, 402);
+
+-- Insert values into Rating table
+INSERT INTO Rating (ratings, customer_id, restaurant_id) 
+VALUES (5, 101, 201);
+INSERT INTO Rating (ratings, customer_id, restaurant_id) 
+VALUES (4, 102, 202);
+
+-- Verify the inserted data
+SELECT * FROM Admin;
+SELECT * FROM Customer;
+SELECT * FROM Restaurant;
+SELECT * FROM Category;
+SELECT * FROM Menu_items;
+SELECT * FROM Payment_details;
+SELECT * FROM Delivery_details;
+SELECT * FROM Order_details;
+SELECT * FROM Orders;
+SELECT * FROM Rating;
