@@ -157,3 +157,15 @@ INSERT INTO Rating (ratings, customer_id, restaurant_id)
 VALUES (5, 101, 201);
 INSERT INTO Rating (ratings, customer_id, restaurant_id) 
 VALUES (4, 102, 202);
+
+-- Display all table data
+SELECT * FROM Admin;
+SELECT * FROM Customer;
+SELECT * FROM Restaurant;
+SELECT * FROM Category;
+SELECT * FROM Menu_items;
+SELECT * FROM Payment_details;
+SELECT * FROM Delivery_details;
+SELECT * FROM Order_details;
+SELECT * FROM Orders;
+SELECT * FROM Rating;
